@@ -1382,7 +1382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d08a231815042a3b5ff0367fed187d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetLevelNumber: 1
   GetStageNumber: 0
 --- !u!4 &1160664010
 Transform:
@@ -1596,7 +1595,7 @@ GameObject:
   - component: {fileID: 1398955539}
   - component: {fileID: 1398955538}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DataSender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1613,6 +1612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07d33aaaa5e44de8ac720d9f509873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GetPlayerID: 
+  GetStageNumber: 0
+  GetTryData: 
 --- !u!4 &1398955539
 Transform:
   m_ObjectHideFlags: 0
@@ -1890,7 +1892,6 @@ GameObject:
   - component: {fileID: 1894806660}
   - component: {fileID: 1894806657}
   - component: {fileID: 1894806662}
-  - component: {fileID: 1894806661}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2002,18 +2003,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.9}
   m_EdgeRadius: 0
---- !u!114 &1894806661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1894806656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81bd1540e941742868eee0c725348ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BestYpos: 0
 --- !u!114 &1894806662
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿　using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,12 +9,8 @@ public class Keysetter : MonoBehaviour
     GameObject Key;
     GameObject StageSelectBack;
 
-    //どのレベルを選択したかを判断する
-    public int SelectScene; //０…ノーリスクレベル、１…リスクレベル、２…ゲットレベル
-
     //現在の段階を判断する
     public int LiveScene = 0; //１…レベル選択画、２…ステージ選択画面、３…SelectSceneを参照して、指定されたシーンへ飛ぶ
-    public static int SendLevel; //選択したレベルを各シーンに送る
 
     //どのステージを選択したかを判断する
     public int SelectStage; //０〜４
@@ -22,7 +18,7 @@ public class Keysetter : MonoBehaviour
 
     void Start()
     {
-        Key = GameObject.Find("SelectKey"); 
+        Key = GameObject.Find("SelectKey"); 　
         StageSelectBack = GameObject.Find("StageSelectBack");
     }
 
@@ -32,9 +28,6 @@ public class Keysetter : MonoBehaviour
         {
             Key.GetComponent<KeyController_Level>().enabled = true;
             Key.GetComponent<KeyController_Stage>().enabled = false;
-            //Key.GetComponent<KeyController_Level>().KeyPos = 1;
-            //Key.transform.position = new Vector3(0, -4.0f, 0);
-            //Key.transform.localScale = new Vector3(0.4f, 0.2f, 0);
             StageSelectBack.transform.position = new Vector3(0, 12.0f, 0);
             LiveScene = 0;
         }
@@ -52,29 +45,10 @@ public class Keysetter : MonoBehaviour
 
         if (LiveScene == 3)
         {
-            SendLevel = SelectScene;
             SendStage = SelectStage;
-
-            if (SelectScene == 0)
-            {
-                SceneManager.LoadScene("NoRiskLevel");
-            }
-            if (SelectScene == 1)
-            {
-                SceneManager.LoadScene("RiskLevel");
-            }
-            if (SelectScene == 2)
-            {
-                SceneManager.LoadScene("GetLevel");
-            }
-
+            SceneManager.LoadScene("RiskLevel");
             LiveScene = 0;
         }
-    }
-
-    public static int LevelGetter()
-    {
-        return SendLevel;
     }
 
     public static int StageGetter()

@@ -7,9 +7,8 @@ public class KeyController_Stage : MonoBehaviour
     //キーの現在位置番号
     public int KeyPos = 1; //０…１、１…２、２…３、３…４、４…５(KeyPosの数値 … キーが指してるステージ番号)
 
-    //ジョイコンのスティックの入力検出
-    float JoyconHor; //水平方向の検出を収納
-    //float JoyconVer; //垂直方向の検出を収納。念のため記載
+    //キーの入力確認
+    float ArrowHor; 
 
     //左右それぞれが検出されたかを判断する
     public bool GetDownLeft = false;
@@ -28,20 +27,20 @@ public class KeyController_Stage : MonoBehaviour
         //水平方向の入力確認。-１…左移動、1…右移動
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            this.JoyconHor = -1;
+            this.ArrowHor = -1;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            this.JoyconHor = 1;
+            this.ArrowHor = 1;
         }
         else
         {
-            this.JoyconHor = 0;
+            this.ArrowHor = 0;
         }
         //this.JoyconVer = Input.GetAxis("Vertical1"); //垂直方向。念のため記載
 
         //スティックを左に倒した時
-        if (this.JoyconHor  < 0 && !GetDownLeft)
+        if (this.ArrowHor  < 0 && !GetDownLeft)
         {
             //スティックが左に倒された事を検出
             GetDownLeft = true;
@@ -77,7 +76,7 @@ public class KeyController_Stage : MonoBehaviour
         }
 
         //スティックを右に倒した時
-        if (this.JoyconHor  > 0 && !GetDownRight)
+        if (this.ArrowHor  > 0 && !GetDownRight)
         {
             //スティックが右に倒された事を検出
             GetDownRight = true;
@@ -112,7 +111,7 @@ public class KeyController_Stage : MonoBehaviour
         }
 
         //スティックが降ろされていないかを検出
-        if(this.JoyconHor == 0)
+        if(this.ArrowHor == 0)
         {
             GetDownLeft = false;
             GetDownRight = false;

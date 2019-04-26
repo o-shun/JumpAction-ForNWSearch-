@@ -16,13 +16,9 @@ public class EndKeyController_2 : MonoBehaviour
     public bool GetDownLeft = false;
     public bool GetDownRight = false;
 
-    //現在のレベルを取得し収納する
-    int NowLevel;
-
     void Start () 
     {
-        //レベル選択画面で決定したレベルを取得する
-        NowLevel = Keysetter.SendLevel;
+
     }
 
 	void Update () 
@@ -98,18 +94,7 @@ public class EndKeyController_2 : MonoBehaviour
         {
             if (this.KeyPos == 0) //「もう１度プレイ」を選択した時
             {
-                if (NowLevel == 0)
-                {
-                    SceneManager.LoadScene("NoRiskLevel");
-                }
-                if (NowLevel == 1)
-                {
-                    SceneManager.LoadScene("RiskLevel");
-                }
-                if (NowLevel == 2)
-                {
-                    SceneManager.LoadScene("GetLevel");
-                }
+                SceneManager.LoadScene("RiskLevel");
             }
             else if (this.KeyPos == 1) //「タイトルに戻る」を選択した時
             {

@@ -9,6 +9,7 @@ public class HellChecker : MonoBehaviour
     GameObject resultWriter; //ゲームオブジェクト「Resultdirector」を収納
     GameObject endSceneDirector; //ゲームオブジェクト「EndSceneDirector」を収納
     bool CheckHell = false; //プレイヤーがゴールに到達したかを判断
+    GameObject dataSender; //ゲームオブジェクト「DataSender」を収納
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class HellChecker : MonoBehaviour
         this.player = GameObject.Find("Player");
         this.resultWriter = GameObject.Find("ResultDirector");
         this.endSceneDirector = GameObject.Find("EndSceneDirector");
+        this.dataSender = GameObject.Find("DataSender");
     }
 
     void Update()
@@ -25,6 +27,9 @@ public class HellChecker : MonoBehaviour
             this.player.GetComponent<Rigidbody2D>().velocity = Vector2.zero; //プレイヤーの停止
             this.player.GetComponent<PlayerController>().enabled = false; //「PlayerController」の停止(操作不能にする)
             this.resultWriter.GetComponent<ResultWriter>().Result = 2; //ゲームの結果が失敗だった事を「Resultdirector」に通達する
+                                                                       
+            this.dataSender.GetComponent<NBETester>().GetTryData = "Miss"; //ゲームの結果が失敗だった事を「DataSender」に通達する
+            this.dataSender.GetComponent<NBETester>().SendChecker = 1; //データを送信する指示を通達する
 
             //ボタンを押して進む
             if (Input.GetKeyDown(KeyCode.Space))

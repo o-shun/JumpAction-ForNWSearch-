@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
         {
             this.JoyconHor = 1;
         }
+        else
+        {
+            this.JoyconHor = 0;
+        }
+
         //this.JoyconVer = Input.GetAxis("Vertical1"); //垂直方向。念のため記載
 
         //ジャンプ中じゃない時にできること
