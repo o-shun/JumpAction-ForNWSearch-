@@ -37,7 +37,6 @@ public class KeyController_Stage : MonoBehaviour
         {
             this.ArrowHor = 0;
         }
-        //this.JoyconVer = Input.GetAxis("Vertical1"); //垂直方向。念のため記載
 
         //スティックを左に倒した時
         if (this.ArrowHor  < 0 && !GetDownLeft)
@@ -121,13 +120,14 @@ public class KeyController_Stage : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             KeySetter.GetComponent<Keysetter>().SelectStage = this.KeyPos;
-            KeySetter.GetComponent<Keysetter>().LiveScene = 3;
+            KeySetter.GetComponent<Keysetter>().LiveScene = 4;
         }
 
         //Xキーでレベル選択に戻る
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            KeySetter.GetComponent<Keysetter>().LiveScene = 1;
+            KeySetter.GetComponent<Keysetter>().LiveScene = 2;
+            KeySetter.GetComponent<Keysetter>().SkipSkillCheck = 2;
         }
     }
 }

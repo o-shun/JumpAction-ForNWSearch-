@@ -7,10 +7,6 @@ public class KeyController_Level : MonoBehaviour
     //キーの現在位置番号
     public int KeyPos = 1; //０…ノーリスクレベル、１…リスクレベル、２…ゲットレベル
 
-    //左右それぞれが検出されたかを判断する
-    public bool GetDownLeft = false;
-    public bool GetDownRight = false;
-
     //ステージ選択画面に移行する為のディレクターを収納するオブジェクト
     GameObject KeySetter;
 
@@ -27,6 +23,7 @@ public class KeyController_Level : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             KeySetter.GetComponent<Keysetter>().LiveScene = 2;
+            KeySetter.GetComponent<Keysetter>().SkipSkillCheck = 1;
         }
     }
 }
