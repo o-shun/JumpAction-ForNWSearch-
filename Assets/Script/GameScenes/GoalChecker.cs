@@ -44,7 +44,7 @@ public class GoalChecker : MonoBehaviour
             //ボタンを押して進む
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                this.endSceneDirector.GetComponent<EndSceneSetter>().EndSceneMode = 2; //リザルト後の選択画面を表示
+                this.endSceneDirector.GetComponent<EndSceneSetter>().EndSceneMode = 1 ; //リザルト後の選択画面を表示
             }
         }
     }

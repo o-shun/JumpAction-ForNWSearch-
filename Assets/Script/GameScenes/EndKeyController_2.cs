@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 public class EndKeyController_2 : MonoBehaviour 
 {
     //キーの現在位置番号
-    public int KeyPos = 0; //０…１、１…２、２…３、３…４、４…５(KeyPosの数値 … キーが指してるステージ番号)
+    public int KeyPos = 0; //０…もう１度プレイ、１…タイトルに戻る(KeyPosの数値 … キーが指してるステージ番号)
 
-    //ジョイコンのスティックの入力検出
-    float JoyconHor; //水平方向の検出を収納
-    //float JoyconVer; //垂直方向の検出を収納。念のため記載
+    //十字キーの入力検出
+    float JoyconHor;
 
     //左右それぞれが検出されたかを判断する
     public bool GetDownLeft = false;
@@ -36,7 +35,6 @@ public class EndKeyController_2 : MonoBehaviour
         {
             this.JoyconHor = 0;
         }
-        //this.JoyconVer = Input.GetAxis("Vertical1"); //垂直方向。念のため記載
 
         //スティックを左に倒した時
         if (this.JoyconHor < 0 && !GetDownLeft)
