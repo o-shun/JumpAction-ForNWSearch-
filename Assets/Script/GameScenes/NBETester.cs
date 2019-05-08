@@ -9,7 +9,7 @@ public class NBETester : MonoBehaviour
     public int GetSkillLevel; //プレイヤーが選択したスキルレベルを取得する
     public int GetStageNumber; //ステージの種類を取得する
     public string GetTryData; //プレイヤーが成功したか失敗したかを取得する
-    public int GetAnswer ; //プレイヤーのアンケート結果を取得する。０の場合はアンケート対象外
+    public int GetAnswer = 0; //プレイヤーのアンケート結果を取得する。０の場合はアンケート対象外
 
     public int SendChecker = 0;
     int SendStoper = 0;
@@ -22,8 +22,6 @@ public class NBETester : MonoBehaviour
         GetSkillLevel = Keysetter.SkillGetter();
         //選択されたステージを取得
         GetStageNumber = Keysetter.StageGetter();
-        //選択されたアンケート結果を取得
-        GetAnswer = EndKeyController_1.AnswerGetter();
     }
 
     void Update()

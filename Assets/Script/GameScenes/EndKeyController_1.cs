@@ -8,6 +8,9 @@ public class EndKeyController_1 : MonoBehaviour
     //ゲームオブジェクト「EndSceneDirector」を収納
     GameObject endSceneDirector;
 
+    //ゲームオブジェクト「DataSender」を収納
+    GameObject dataSender;
+
     //キーの現在位置番号
     public int KeyPos = 0; //０…１、１…２、２…３、３…４、４…５、５…６、６…７(KeyPosの数値 … キーが指してる番号)
 
@@ -25,6 +28,7 @@ public class EndKeyController_1 : MonoBehaviour
     {
         //Find関数でオブジェクトの呼び出し
         this.endSceneDirector = GameObject.Find("EndSceneDirector");
+        this.dataSender = GameObject.Find("DataSender");
 
         //キーのポジションを真ん中に設定
         KeyPos = 3;
@@ -161,20 +165,12 @@ public class EndKeyController_1 : MonoBehaviour
             GetDownRight = false;
         }
 
+        this.dataSender.GetComponent<NBETester>().GetAnswer = KeyPos + 1; //選択したアンケート回答を送信
+
         //スペースキーで難易度決定
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SendAnswer = KeyPos + 1; //選択したアンケート回答を「SendAnswer」に収納
             this.endSceneDirector.GetComponent<EndSceneSetter>().EndSceneMode = 2; //リザルト後の選択画面を表示
         }
-    }
-
-    public static int AnswerGetter()
-    {
-        return SendAnswer;
-    }
-    public void ResetSendAnswer()
-    {
-        SendAnswer = 0;
     }
 }

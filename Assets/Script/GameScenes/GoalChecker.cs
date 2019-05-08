@@ -37,9 +37,7 @@ public class GoalChecker : MonoBehaviour
 
             //ゲームの結果が成功だった事を「Resultdirector」に通達する
             this.resultWriter.GetComponent<ResultWriter>().Result = 1;
-            
             this.dataSender.GetComponent<NBETester>().GetTryData = "Success";　//ゲームの結果が成功だった事を「DataSender」に通達する
-            this.dataSender.GetComponent<NBETester>().SendChecker = 1; //データを送信する指示を通達する
 
             //ボタンを押して進む
             if (Input.GetKeyDown(KeyCode.Space))

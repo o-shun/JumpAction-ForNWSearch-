@@ -32,7 +32,7 @@ public class EndSceneSetter : MonoBehaviour
         //ステージの種類を取得
         GetStageNumber = Keysetter.StageGetter();
 
-        EndGameSelect_1.GetComponent<EndKeyController_1>().ResetSendAnswer();
+        //EndGameSelect_1.GetComponent<EndKeyController_1>().ResetSendAnswer();
     }
 
     void Update()

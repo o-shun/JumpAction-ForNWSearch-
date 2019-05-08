@@ -29,7 +29,6 @@ public class HellChecker : MonoBehaviour
             this.resultWriter.GetComponent<ResultWriter>().Result = 2; //ゲームの結果が失敗だった事を「Resultdirector」に通達する
                                                                        
             this.dataSender.GetComponent<NBETester>().GetTryData = "Miss"; //ゲームの結果が失敗だった事を「DataSender」に通達する
-            this.dataSender.GetComponent<NBETester>().SendChecker = 1; //データを送信する指示を通達する
 
             //ボタンを押して進む
             if (Input.GetKeyDown(KeyCode.Space))
