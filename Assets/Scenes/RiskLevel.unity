@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndSceneMode: 0
+  GetStageNumber: 0
 --- !u!1 &224312423
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7d18d740b8c44638f2c23aacda3c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KeyPos: 0
+  GetDownLeft: 0
+  GetDownRight: 0
 --- !u!212 &224312426
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1519,6 +1523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1387356822}
   - component: {fileID: 1387356821}
+  - component: {fileID: 1387356823}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -1585,6 +1590,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1387356823
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1387356820}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea423db2dd3994ebea7ef0fe22795c86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1398955537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,6 +1639,7 @@ MonoBehaviour:
   GetSkillLevel: 0
   GetStageNumber: 0
   GetTryData: 
+  GetAnswer: 0
   SendChecker: 0
 --- !u!4 &1398955539
 Transform:
@@ -1894,6 +1918,7 @@ GameObject:
   - component: {fileID: 1894806660}
   - component: {fileID: 1894806657}
   - component: {fileID: 1894806662}
+  - component: {fileID: 1894806661}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1956,7 +1981,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d9513c194a6964c598fe10a202184518, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2540837417f2d404b9fd541792091c02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2005,6 +2030,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.9}
   m_EdgeRadius: 0
+--- !u!114 &1894806661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894806656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0738915a9f4f4912a0baff1fc963159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationSet: 0
+  image:
+  - {fileID: 21300000, guid: 2540837417f2d404b9fd541792091c02, type: 3}
+  - {fileID: 21300000, guid: a42ff6b048e394314ab976eeb2805864, type: 3}
+  - {fileID: 21300000, guid: 07aec4626d5554d6ea72333aff62c256, type: 3}
+  - {fileID: 21300000, guid: 6035545ed0f5749709abd12af9ebfdeb, type: 3}
+  - {fileID: 21300000, guid: 26b43312e4b3e42a4a869e753e0e490d, type: 3}
+  - {fileID: 21300000, guid: 11763e928981a4d3bae74f1e1173611c, type: 3}
+  - {fileID: 21300000, guid: 85b56b841fc6644a3b25f47610176c33, type: 3}
+  - {fileID: 21300000, guid: a3e76a92a7d534cfe9d6fd0b9d81da6d, type: 3}
+  - {fileID: 21300000, guid: 073fdf7fba8a64ba69f6852aefbbcfc0, type: 3}
+  - {fileID: 21300000, guid: c289fecbbc9d64bdf96d7f009a60c4b2, type: 3}
 --- !u!114 &1894806662
 MonoBehaviour:
   m_ObjectHideFlags: 0

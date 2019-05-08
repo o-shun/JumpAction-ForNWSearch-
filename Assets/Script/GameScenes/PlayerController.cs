@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    GameObject player;
+    
     public Vector2 PlayerVec; //プレイヤーのベクトルを収納する
     Vector2 PlayerVelo; //プレイヤーの速度を収納する
 
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         //コンポーネント「Rigidbody2D」取得
         this.rigid2D = GetComponent<Rigidbody2D>();
         //オブジェクト「Player」取得
+        this.player = GameObject.Find("Player");
     }
 
     void Update()
@@ -50,9 +53,15 @@ public class PlayerController : MonoBehaviour
         //ジャンプ中じゃない時にできること
         if (this.rigid2D.velocity.y == 0)
         {
+            //ジャンプアニメーションに移行
+            player.GetComponent<CharacterAnimethion>().AnimationSet = 0;
+
             //Zキーでジャンプをする 
             if (Input.GetKeyDown(KeyCode.Space) && JumpKeyDown == false)
             {
+                //ジャンプアニメーションに移行
+                player.GetComponent<CharacterAnimethion>().AnimationSet = 4;
+
                 PlayerVelo.y = (PlayerVec.y / rigid2D.mass) * Time.fixedDeltaTime; //ジャンプのベクトルから初速度を計算(ジャンプが頂点に到達した時と仮定)
                 var t = PlayerVelo.y / (-Physics2D.gravity.y * rigid2D.gravityScale); //ジャンプが頂点に到達した時までに要する時間を計算する
                 stopTime = t;
