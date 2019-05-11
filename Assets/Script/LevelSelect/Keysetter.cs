@@ -9,9 +9,10 @@ public class Keysetter : MonoBehaviour
     GameObject Key;
     GameObject StageSelectBack;
     GameObject SkillCheckBack;
+    GameObject description2;
 
     //現在の段階を判断する
-    public int LiveScene = 0; //１…レベル選択画、２…ウデマエ確認画面、３…ステージ選択画面、４…ゲームシーンへ飛ぶ
+    public int LiveScene = 1; //１…レベル選択画、２…ウデマエ確認画面、３…ステージ選択画面、４…ゲームシーンへ飛ぶ
 
     //選択したスキルレベルを判断
     public int SelectSkill; //０〜４
@@ -28,6 +29,7 @@ public class Keysetter : MonoBehaviour
         Key = GameObject.Find("SelectKey");
         StageSelectBack = GameObject.Find("StageSelectBack");
         SkillCheckBack = GameObject.Find("SkillLevelCheck");
+        description2 = GameObject.Find("Description2");
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class Keysetter : MonoBehaviour
             Key.GetComponent<KeyController_Stage>().enabled = false;
             StageSelectBack.transform.position = new Vector3(0, 12.0f, 0);
             SkillCheckBack.transform.position = new Vector3(0, -12.0f, 0);
+            description2.GetComponent<DescriptionWriter_Title>().WriteOn = 0;
             LiveScene = 0;
         }
         if (LiveScene == 2) //ウデマエ確認の設定
@@ -53,6 +56,7 @@ public class Keysetter : MonoBehaviour
                 Key.transform.localScale = new Vector3(0.2f, 0.1f, 0);
                 StageSelectBack.transform.position = new Vector3(0, 12.0f, 0);
                 SkillCheckBack.transform.position = new Vector3(0, 0.0f, 0);
+                description2.GetComponent<DescriptionWriter_Title>().WriteOn = 1;
                 LiveScene = 0;
             }
             else
@@ -74,6 +78,7 @@ public class Keysetter : MonoBehaviour
             Key.transform.localScale = new Vector3(0.2f, 0.1f, 0);
             StageSelectBack.transform.position = new Vector3(0, 0, 0);
             SkillCheckBack.transform.position = new Vector3(0, -12.0f, 0);
+            description2.GetComponent<DescriptionWriter_Title>().WriteOn = 1;
             LiveScene = 0;
         }
         if (LiveScene == 4) //ゲームシーンへ移行
