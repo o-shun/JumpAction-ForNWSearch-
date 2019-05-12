@@ -10,7 +10,6 @@ public class HellChecker : MonoBehaviour
     GameObject endSceneDirector; //ゲームオブジェクト「EndSceneDirector」を収納
     bool CheckHell = false; //プレイヤーがゴールに到達したかを判断
     GameObject dataSender; //ゲームオブジェクト「DataSender」を収納
-    GameObject descriptionDirector; //ゲームオブジェクト「DescriptionDirector」を収納
 
     void Start()
     {
@@ -19,7 +18,6 @@ public class HellChecker : MonoBehaviour
         this.resultWriter = GameObject.Find("ResultDirector");
         this.endSceneDirector = GameObject.Find("EndSceneDirector");
         this.dataSender = GameObject.Find("DataSender");
-        this.descriptionDirector = GameObject.Find("DescriptionDirector");
     }
 
     void Update()
@@ -35,7 +33,6 @@ public class HellChecker : MonoBehaviour
             //ボタンを押して進む
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                this.descriptionDirector.GetComponent<DescriptionWriter_Game>().WriteChange = 2;
                 this.endSceneDirector.GetComponent<EndSceneSetter>().EndSceneMode = 2; //リザルト後の選択画面を表示
             }
         }

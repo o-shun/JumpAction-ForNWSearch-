@@ -8,7 +8,6 @@ public class GoalChecker : MonoBehaviour
     GameObject resultWriter; //ゲームオブジェクト「Resultdirector」を収納
     GameObject endSceneDirector; //ゲームオブジェクト「EndSceneDirector」を収納
     GameObject dataSender; //ゲームオブジェクト「DataSender」を収納
-    GameObject descriptionDirector; //ゲームオブジェクト「DescriptionDirector」を収納
 
     bool CheckGoal = false; //プレイヤーがゴールに到達したかを判断
     bool PlayerStop = false; //プレイヤーが停止したかを判断
@@ -21,7 +20,6 @@ public class GoalChecker : MonoBehaviour
         this.resultWriter = GameObject.Find("ResultDirector");
         this.endSceneDirector = GameObject.Find("EndSceneDirector");
         this.dataSender = GameObject.Find("DataSender");
-        this.descriptionDirector = GameObject.Find("DescriptionDirector");
     }
 
     void Update()
@@ -47,7 +45,6 @@ public class GoalChecker : MonoBehaviour
             //ボタンを押して進む
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                this.descriptionDirector.GetComponent<DescriptionWriter_Game>().WriteChange = 2;
                 this.endSceneDirector.GetComponent<EndSceneSetter>().EndSceneMode = 1 ; //リザルト後の選択画面を表示
             }
         }

@@ -13,6 +13,7 @@ public class NBETester : MonoBehaviour
 
     public int SendChecker = 0;
     int SendStoper = 0;
+    public int SendStoper2 = 0;
 
     void Start()
     {
@@ -44,5 +45,20 @@ public class NBETester : MonoBehaviour
             // データストアへの登録
             testClass.SaveAsync();
         }
+
+        if(SendChecker == 1 && SendStoper2 == 1)
+        {
+            SendStoper2 = 2;
+
+            // クラスのNCMBObjectを作成
+            NCMBObject testClass = new NCMBObject("TestClass");
+
+            // オブジェクトに値を設定
+            testClass["message"] = "ID「" + GetPlayerID + "」SkillLevel:" + GetSkillLevel + ", Stage" + GetStageNumber + ":NoSuccessEnd, Answer:" + GetAnswer;
+
+            // データストアへの登録
+            testClass.SaveAsync();
+        }
+
     }
 }

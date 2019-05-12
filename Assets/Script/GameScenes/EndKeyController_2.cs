@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class EndKeyController_2 : MonoBehaviour 
 {
-    //ゲームオブジェクト「DataSender」を収納
-    GameObject dataSender;
+
+    GameObject endSceneDirector; //ゲームオブジェク「EndSceneDirector」を収納
+    GameObject dataSender; //ゲームオブジェクト「DataSender」を収納
 
     //キーの現在位置番号
     public int KeyPos = 0; //０…もう１度プレイ、１…タイトルに戻る(KeyPosの数値 … キーが指してるステージ番号)
@@ -22,6 +23,7 @@ public class EndKeyController_2 : MonoBehaviour
     {
         //Find関数でオブジェクトの呼び出し
         this.dataSender = GameObject.Find("DataSender");
+        this.endSceneDirector = GameObject.Find("EndSceneDirector");
 
         //データを送信する指示を通達する
         this.dataSender.GetComponent<NBETester>().SendChecker = 1;
@@ -103,7 +105,7 @@ public class EndKeyController_2 : MonoBehaviour
             }
             else if (this.KeyPos == 1) //「タイトルに戻る」を選択した時
             {
-                SceneManager.LoadScene("LevelSelect");
+                endSceneDirector.GetComponent<EndSceneSetter>().EndSceneMode = 3;
             }
         }
     }
