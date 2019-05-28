@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class EndKeyController_2 : MonoBehaviour 
 {
-
     GameObject endSceneDirector; //ゲームオブジェク「EndSceneDirector」を収納
     GameObject dataSender; //ゲームオブジェクト「DataSender」を収納
 
@@ -13,11 +12,14 @@ public class EndKeyController_2 : MonoBehaviour
     public int KeyPos = 0; //０…もう１度プレイ、１…タイトルに戻る(KeyPosの数値 … キーが指してるステージ番号)
 
     //十字キーの入力検出
-    float JoyconHor;
+    float JoyconHor = 0;
 
     //左右それぞれが検出されたかを判断する
     public bool GetDownLeft = false;
     public bool GetDownRight = false;
+
+    //リザルトに入った時に、十字キーの誤爆を防ぐ
+    int KeyStoper = 0;
 
     void Start () 
     {
@@ -27,22 +29,49 @@ public class EndKeyController_2 : MonoBehaviour
 
         //データを送信する指示を通達する
         this.dataSender.GetComponent<NBETester>().SendChecker = 1;
+
+        //水平方向の入力確認。-１…左移動、1…右移動
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.KeyStoper = -1;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            this.KeyStoper = 1;
+        }
     }
 
 	void Update () 
     {
-        //水平方向の入力確認。-１…左移動、1…右移動
-        if (Input.GetKey(KeyCode.LeftArrow)) 
-        { 
-            this.JoyconHor = -1;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if (KeyStoper == 0)
         {
-            this.JoyconHor = 1;
+            //水平方向の入力確認。-１…左移動、1…右移動
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                this.JoyconHor = -1;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                this.JoyconHor = 1;
+            }
+            else
+            {
+                this.JoyconHor = 0;
+            }
         }
-        else 
+        else if(KeyStoper == -1)
         {
-            this.JoyconHor = 0;
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                this.KeyStoper = 0;
+            }
+        }
+        else if (KeyStoper == 1)
+        {
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                this.KeyStoper = 0;
+            }
         }
 
         //スティックを左に倒した時

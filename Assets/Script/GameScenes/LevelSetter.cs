@@ -35,7 +35,7 @@ public class LevelSetter : MonoBehaviour
         }
         if (GetStageNumber == 4)
         {
-            Goal.transform.position = new Vector3(26.63f, -6.0f, 0);
+            Goal.transform.position = new Vector3(26.60407352448f, -6.0f, 0);
         }
     }
 
