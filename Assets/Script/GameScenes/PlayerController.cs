@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     float JoyconHor; //水平方向の検出を収納
     //float JoyconVer; //垂直方向の検出を収納。念のため記載int　
 
+    public float NowVec;
+
     void Start()
     {
         //コンポーネント「Rigidbody2D」取得
@@ -38,10 +40,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        NowVec = rigid2D.velocity.x;
+
         ///水平方向の入力を検出。-１…左移動、1…右移動
+        //this.JoyconHor = 1;
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            this.JoyconHor = 1;
+        this.JoyconHor = 1;
         }
         else
         {
@@ -56,9 +62,10 @@ public class PlayerController : MonoBehaviour
             //ジャンプアニメーションに移行
             player.GetComponent<CharacterAnimethion>().AnimationSet = 0;
 
-            //Zキーでジャンプをする 
-            if (Input.GetKeyDown(KeyCode.Space) && JumpKeyDown == false)
-            {
+            //Zキーでジャンプをする
+            //if (player.transform.position.x >= 8.5 && JumpKeyDown == false)
+                if (Input.GetKeyDown(KeyCode.Space) && JumpKeyDown == false)
+                {
                 //ジャンプアニメーションに移行
                 player.GetComponent<CharacterAnimethion>().AnimationSet = 4;
 
@@ -99,7 +106,7 @@ public class PlayerController : MonoBehaviour
             {
                 isJump = false;
                 Debug.Log("Y軸での予測との誤差：" + (ForecastPos.y - transform.position.y).ToString("F5"));
-                //Debug.Break(); //テスト用画面停止
+                Debug.Break(); //テスト用画面停止
             }
         }
     }

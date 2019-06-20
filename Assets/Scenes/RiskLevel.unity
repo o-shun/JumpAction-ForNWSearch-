@@ -1826,7 +1826,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1398955537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d07d33aaaa5e44de8ac720d9f509873a, type: 3}
   m_Name: 
@@ -2050,7 +2050,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1691069183}
   - component: {fileID: 1691069182}
-  - component: {fileID: 1691069181}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2058,24 +2057,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1691069181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1691069180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal1
-  m_VerticalAxis: Vertical1
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &1691069182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2114,8 +2095,8 @@ GameObject:
   - component: {fileID: 1894806658}
   - component: {fileID: 1894806660}
   - component: {fileID: 1894806657}
-  - component: {fileID: 1894806662}
   - component: {fileID: 1894806661}
+  - component: {fileID: 1894806662}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
