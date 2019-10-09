@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     GameObject player;
-    
+
     public Vector2 PlayerVec; //プレイヤーのベクトルを収納する
     Vector2 PlayerVelo; //プレイヤーの速度を収納する
 
@@ -17,18 +17,16 @@ public class PlayerController : MonoBehaviour
     float ForcePower = 10.0f; // 慣性のかかり具合(大きければすぐ最高速に)
 
     //Y軸
-    float JumpForce = 1000.0f; //ジャンプ力を収納する
+    float JumpForce = 2000.0f; //ジャンプ力を収納する
     bool JumpKeyDown = false; //ジャンプボタンが押されたかを判断する
-    private bool isJump = false; //ジャンプが開始したかを判断する(テスト用)
-    private float timeCnt = 0.0f; //ジャンプを開始してからの時間経過を収納する(テスト用)
-    private float stopTime = 0.0f; //ジャンプの頂点に到達する時間を収納する(テスト用)
-    Vector2 ForecastPos = new Vector2(0, 0); //ジャンプ後の予測座標を収納する
 
     //方向キーの入力検出
-    float JoyconHor; //水平方向の検出を収納
+    public float JoyconHor; //水平方向の検出を収納
     //float JoyconVer; //垂直方向の検出を収納。念のため記載int　
 
-    public float NowVec;
+    //フレーム関係
+    public int flameCheck_1 = 0;
+    public int flameCheck_2 = 0;
 
     void Start()
     {
@@ -40,49 +38,50 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        NowVec = rigid2D.velocity.x;
-
         ///水平方向の入力を検出。-１…左移動、1…右移動
         //this.JoyconHor = 1;
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-        this.JoyconHor = 1;
-        }
-        else
-        {
-            this.JoyconHor = 0;
-        }
-
+        this.JoyconHor = Input.GetAxisRaw("Horizontal"); //水平方向。-１…左移動、1…右移動
         //this.JoyconVer = Input.GetAxis("Vertical1"); //垂直方向。念のため記載
+
+        //経過フレームのカウント用
+        //flameCheck_1++;
+
+        //以下物理処理
+
+        if (this.JoyconHor >= 0)
+            this.PlayerVelo.x = this.PlayerLimit * this.JoyconHor; //向きを判定
+
+        //ジャンプキーが押された時、Y軸方向に「AddForce」
+        //if (JumpKeyDown)
+        //{
+        //this.rigid2D.AddForce(Vector2.up * this.PlayerVec.y);
+        //JumpKeyDown = false;
+        //}
 
         //ジャンプ中じゃない時にできること
         if (this.rigid2D.velocity.y == 0)
         {
+            //間隔確認用
+            Debug.Log("Update:" + transform.position.x);
+
             //ジャンプアニメーションに移行
             player.GetComponent<CharacterAnimethion>().AnimationSet = 0;
 
-            //Zキーでジャンプをする
-            //if (player.transform.position.x >= 8.5 && JumpKeyDown == false)
-                if (Input.GetKeyDown(KeyCode.Space) && JumpKeyDown == false)
-                {
+            //スペースキーでジャンプをする
+            //if (player.transform.position.x >= 8.6f && JumpKeyDown == false)
+            if (Input.GetKeyDown(KeyCode.Space) && JumpKeyDown == false)
+            {
                 //ジャンプアニメーションに移行
                 player.GetComponent<CharacterAnimethion>().AnimationSet = 4;
 
-                PlayerVelo.y = (PlayerVec.y / rigid2D.mass) * Time.fixedDeltaTime; //ジャンプのベクトルから初速度を計算(ジャンプが頂点に到達した時と仮定)
-                var t = PlayerVelo.y / (-Physics2D.gravity.y * rigid2D.gravityScale); //ジャンプが頂点に到達した時までに要する時間を計算する
-                stopTime = t;
+                //ジャンプ開始
+                //JumpKeyDown = true;
 
-                //ジャンプが頂点に到達した時の座標を計算し表示する
-                var y = transform.position.y + (PlayerVelo.y * t) - 0.5f * (-Physics2D.gravity.y * rigid2D.gravityScale) * Mathf.Pow(t, 2.0f);
-                var x = transform.position.x + (PlayerVelo.x * t);
-                ForecastPos = new Vector2(x, y);
-                Debug.Log(t.ToString("F2") + "秒後の座標は" + ForecastPos.ToString("F5"));
-                Debug.Log(transform.position.x);
+                this.rigid2D.AddForce(Vector2.up * this.PlayerVec.y);
+                JumpKeyDown = false;
 
-                JumpKeyDown = true; //ジャンプ開始
-                isJump = true; //ジャンプボタンが押された
-                timeCnt = 0.0f; //ジャンプが開始された時点でタイマー開始
+                //ジャンプ位置確認用
+                Debug.Log("JumpPos:" + transform.position.x);
 
                 //ジャンプ時の最高速度を代入(ダッシュ時)
                 if ((int)this.rigid2D.velocity.x < -5.0f || (int)this.rigid2D.velocity.x > 5.0f)
@@ -90,37 +89,6 @@ public class PlayerController : MonoBehaviour
                     this.PlayerLimit = Mathf.Abs(rigid2D.velocity.x);
                 }
             }
-
-            //中断コマンド(ジャンプボタン＋ダッシュボタン＋マイナス(orプラス))
-            if (Input.GetKey(KeyCode.Joystick1Button0) && Input.GetKey(KeyCode.Joystick1Button1) && Input.GetKey(KeyCode.Joystick1Button8))
-                SceneManager.LoadScene("LevelSelect");
-        }
-
-        //ジャンプが始まった場合(テスト用にジャンプが頂点到達したら一時停止する)
-        if (isJump)
-        {
-            //タイマー進行
-            timeCnt += Time.deltaTime;
-            //想定時間に到達した時点で「Debug.Break()」
-            if (timeCnt >= stopTime)
-            {
-                isJump = false;
-                Debug.Log("Y軸での予測との誤差：" + (ForecastPos.y - transform.position.y).ToString("F5"));
-                Debug.Break(); //テスト用画面停止
-            }
-        }
-    }
-
-    //FixedUpdate() → 秒間に呼ばれる回数が一定のUpdate()。Rigidbodyの更新はここでやるのが良い。GetKeyはダメ。
-    void FixedUpdate()
-    {
-        this.PlayerVelo.x = this.PlayerLimit * this.JoyconHor; //ジョイコンの向きを判定
-
-        //ジャンプキーが押された時、Y軸方向に「AddForce」
-        if (JumpKeyDown)
-        {
-            this.rigid2D.AddForce(Vector2.up * this.PlayerVec.y);
-            JumpKeyDown = false;
         }
 
         this.PlayerVec.y = this.JumpForce; //ダッシュ時以外はジャンプ力を統一
@@ -129,11 +97,24 @@ public class PlayerController : MonoBehaviour
         if ((int)this.rigid2D.velocity.x < -5.0f || (int)this.rigid2D.velocity.x > 5.0f)
         {
             var number = (Mathf.Round(Mathf.Abs(this.rigid2D.velocity.x) * 100)) / 100;
-            this.PlayerVec.y = Mathf.FloorToInt(this.JumpForce + ((int)number - 5.0f) * 50.0f);
+            this.PlayerVec.y = Mathf.FloorToInt(this.JumpForce + ((int)number - 5.0f) * 100.0f);
         }
 
         //ジョイコンの指定した方向に力を加える
         //「moveVector - this.rigid2D.velocity」で、最高速度に近づくたび、かける力を弱くする。「this.ForcePower」で効率の調整。
         this.rigid2D.AddForce(transform.right * this.ForcePower * (this.PlayerVelo - this.rigid2D.velocity));
     }
+
+    //FixedUpdate() → 秒間に呼ばれる回数が一定のUpdate()。Rigidbodyの更新はここでやるのが良い。GetKeyはダメ。
+    //void FixedUpdate()
+    //{
+    //    if (this.rigid2D.velocity.y == 0)
+    //    {
+    //        間隔確認用
+    //    Debug.Log("FixedUpdate:" + transform.position.x);
+    //    }
+
+    //    経過フレームのカウント用
+    //        flameCheck_2++;
+    //}
 }

@@ -77,8 +77,6 @@ public class Keysetter : MonoBehaviour
             Key.GetComponent<KeyController_Level>().enabled = false;
             Key.GetComponent<KeyController_Skill>().enabled = false;
             Key.GetComponent<KeyController_Stage>().enabled = true;
-            Key.GetComponent<KeyController_Stage>().KeyPos = 2;
-            Key.transform.position = new Vector3(0, -1.5f, 0);
             Key.transform.localScale = new Vector3(0.2f, 0.1f, 0);
             StageSelectBack.transform.position = new Vector3(0, 0, 0);
             SkillCheckBack.transform.position = new Vector3(0, -12.0f, 0);

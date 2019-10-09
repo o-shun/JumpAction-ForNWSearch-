@@ -19,24 +19,25 @@ public class LevelSetter : MonoBehaviour
 
         if (GetStageNumber == 0)
         {
-            Goal.transform.position = new Vector3(25.1f, -6.0f, 0);
+            Goal.transform.position = new Vector3(25.0f, -6.0f, 0);
         }
         if (GetStageNumber == 1)
         {
-            Goal.transform.position = new Vector3(25.6f, -6.0f, 0);
+            Goal.transform.position = new Vector3(25.5f, -6.0f, 0);
         }
         if (GetStageNumber == 2)
         {
-            Goal.transform.position = new Vector3(26.1f, -6.0f, 0);
+            Goal.transform.position = new Vector3(26.5f, -6.0f, 0);
         }
         if (GetStageNumber == 3)
         {
-            Goal.transform.position = new Vector3(26.6f, -6.0f, 0);
+            Goal.transform.position = new Vector3(27.0f, -6.0f, 0);
         }
         if (GetStageNumber == 4)
         {
-            Goal.transform.position = new Vector3(26.60407f, -6.0f, 0);
-            //Goal.transform.position = new Vector3(26.604073524475099475f, -6.0f, 0);
+            Goal.transform.position = new Vector3(27.118f, -6.0f, 0);
+            //Goal.transform.position = new Vector3(26.6040735244750994999999999999999999999999999999999999999999999999999999999999999999f, -6.0f, 0);
+            //Goal.transform.position = new Vector3(26.6040735244750994751f, -6.0f, 0);
         }
     }
 

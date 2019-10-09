@@ -31,7 +31,7 @@ public class GoalChecker : MonoBehaviour
         {
             if (!this.PlayerStop)
             {
-                Debug.Log(this.player.transform.position.x);
+                //Debug.Log(this.player.transform.position.x); //着地位置チェック用
                 this.player.GetComponent<Rigidbody2D>().velocity = Vector2.zero; //プレイヤーの停止
                 PlayerStop = true;
             }
@@ -56,7 +56,7 @@ public class GoalChecker : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         //タグ「Player」でキャラがゴールにに触れた時を検出する
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && other.gameObject.transform.position.y >= -3.66f)
         {
             this.CheckGoal = true;
         }
